@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/Widget/product_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AllFood extends StatelessWidget {
@@ -13,6 +14,10 @@ class AllFood extends StatelessWidget {
         'foodNameLast': "Wendy's Burger",
         'foodRating': '4.0',
         'foodImage': 'asset/image/img.png',
+        'foodDescription':"The Cheeseburger Wendy's Burger is a classic fast food burger that packs a punch of flavor in every bite. Made with a juicy beef patty cooked to perfection, it's topped with melted American cheese, crispy lettuce, ripe tomato, and crunchy pickles.",
+        'deliveryTime':'20',
+        'foodPrice':'8.24',
+        
       },
 
       {
@@ -20,6 +25,9 @@ class AllFood extends StatelessWidget {
         'foodNameLast': "Veggie Burger",
         'foodRating': '3.9',
         'foodImage': 'asset/image/vaggie.png',
+        'foodDescription':"Enjoy our delicious Hamburger Veggie Burger, made with a savory blend of fresh vegetables and herbs, topped with crisp lettuce, juicy tomatoes, and tangy pickles, all served on a soft, toasted bun. ",
+        'deliveryTime':'40',
+        'foodPrice':'10.24',
       },
 
       {
@@ -27,6 +35,9 @@ class AllFood extends StatelessWidget {
         'foodNameLast': "Chicken Burge",
         'foodRating': '4.5',
         'foodImage': 'asset/image/chicken.png',
+        'deliveryTime':'35',
+      'foodPrice':'15.24',
+        'foodDescription':'Our chicken burger is a delicious and healthier alternative to traditional beef burgers, perfect for those looking for a lighter meal option. Try it today and experience the mouth-watering flavors of our Hamburger Chicken Burger!'
       },
 
       {
@@ -34,6 +45,9 @@ class AllFood extends StatelessWidget {
         'foodNameLast': "Fried Chicken Burger",
         'foodRating': '4.9',
         'foodImage': 'asset/image/ferid.png',
+        'deliveryTime':'10',
+        'foodPrice':'26.99',
+        'foodDescription':'Indulge in our crispy and savory Fried Chicken Burger, made with a juicy chicken patty, hand-breaded and deep-fried to perfection, served on a warm bun with lettuce, tomato, and a creamy sauce.'
       },
       {
         'foodNameFrist': 'Cheeseburger',
@@ -76,7 +90,7 @@ class AllFood extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDetails(foodImage: foodAll[index]['foodImage'], foodTitle: foodAll[1]['foodNameFrist'], foodRating: foodAll[index]['foodRating'], deliveryTime: '20', foodDescription: foodAll[index]['foodDescription'], foodPrice: foodAll[index]['foodPrice'])));
             },
             child: Card(
               elevation: 5,

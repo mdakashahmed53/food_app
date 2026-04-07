@@ -5,7 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key, required this.foodImage, required this.foodTitle, required this.foodRating, required this.deliveryTime, required this.foodDescription, required this.foodPrice});
 
-  final String foodImage, foodTitle, foodRating, deliveryTime, foodDescription, foodPrice;
+  // final String foodImage, foodTitle, foodRating, deliveryTime, foodDescription, foodPrice;
+  final String foodImage;
+  final String foodTitle ;
+  final String foodRating ;
+  final String deliveryTime ;
+  final String foodDescription ;
+  final String foodPrice ;
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -14,6 +20,9 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   double _currentSliderValue = 60;
   int portion = 0;
+
+
+
 
 
   @override
@@ -36,16 +45,15 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
 
 
-              Image.asset(
-                'asset/image/img.png',
+              Image.asset(widget.foodImage,
                 height: 290,
                 width: 290,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
 
               SizedBox(
                 width: double.infinity,
-                child: Text("Cheeseburger Wendy's Burger", style: GoogleFonts.roboto(
+                child: Text(widget.foodTitle, style: GoogleFonts.roboto(
                   fontSize: 23.sp,
                   fontWeight: FontWeight.w600,
                   color: Color(0XFF3C2F2F),
@@ -57,18 +65,21 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               Row(
                 children: [
+                  // rating image
                   Image.asset('asset/image/rating.png', height: 20,),
                   SizedBox(
                     width: 5,
                   ),
-                  Text('4.9', style: TextStyle(
+                  // text rating
+                  Text(widget.foodRating, style: TextStyle(
                     fontSize: 20,
                     color: Colors.black.withOpacity(0.7)
                   ),),
                   SizedBox(
                     width: 5,
                   ),
-                  Text('- 26 mins', style: TextStyle(
+                  // delivery time
+                  Text('- ${widget.deliveryTime} mins', style: TextStyle(
                     fontSize: 20,
                     color: Colors.black.withOpacity(0.7)
                   ),)
@@ -77,8 +88,8 @@ class _ProductDetailsState extends State<ProductDetails> {
               SizedBox(
                 height: 10,
               ),
-
-              Text("The Cheeseburger Wendy's Burger is a classic fast food burger that packs a punch of flavor in every bite. Made with a juicy beef patty cooked to perfection, it's topped with melted American cheese, crispy lettuce, ripe tomato, and crunchy pickles", style: TextStyle(
+              // food description
+              Text(widget.foodDescription, style: TextStyle(
                 fontSize: 16,
                 color: Colors.black.withOpacity(0.7)
               ),),
@@ -153,6 +164,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                            ),)),
                        Row(
                          children: [
+
                            SizedBox(
                              width: 50,
                              height: 50,
@@ -191,26 +203,33 @@ class _ProductDetailsState extends State<ProductDetails> {
                            SizedBox(
                              width: 10,
                            ),
-                           SizedBox(
-                             width: 50,
-                             height: 50,
-                             child: ElevatedButton(onPressed: (){
+
+
+                           ElevatedButton(
+                             onPressed: () {
                                setState(() {
                                  portion++;
                                });
                              },
-                                 style: ElevatedButton.styleFrom(
-                                     backgroundColor: Colors.red,
-                                     foregroundColor: Colors.white,
-                                     shape: RoundedRectangleBorder(
-                                         borderRadius: BorderRadius.circular(10)
-                                     )
-                                 ),
-                                 child: Text('+', style: TextStyle(
-                                     fontWeight: FontWeight.bold,
-                                     fontSize: 30
-                                 ),)),
+                             style: ElevatedButton.styleFrom(
+                               backgroundColor: Colors.red,
+                               foregroundColor: Colors.white,
+                               shape: RoundedRectangleBorder(
+                                 borderRadius: BorderRadius.circular(10),
+                               ),
+                               alignment: Alignment.center, // 👈 This fixes it
+                               padding: EdgeInsets.zero,    // 👈 Optional: removes extra spacing
+                             ),
+                             child: Text(
+                               '+',
+                               style: TextStyle(
+                                 fontWeight: FontWeight.bold,
+                                 fontSize: 30,
+                               ),
+                             ),
                            )
+
+
                          ],
                        )
                      ],
@@ -243,7 +262,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     borderRadius: BorderRadius.circular(20)
                   ),
                   child: Center(
-                    child: Text('\$8.90',style: GoogleFonts.roboto(
+                    child: Text('\$${widget.foodPrice}',style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w700,
                       fontSize: 24,
                       color: Colors.white

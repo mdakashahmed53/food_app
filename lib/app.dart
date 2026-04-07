@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
         return MaterialApp(
-          // routes: {
-          //   '/':(context)=>Home(),
-          //   '/SplashScreen':(context)=>SplashScreen()
-          // },
-          // initialRoute: '/SplashScreen',
+          routes: {
+            '/':(context)=>Home(),
+            '/SplashScreen':(context)=>SplashScreen()
+          },
+          initialRoute: '/SplashScreen',
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarThemeData(
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             )
           ),
 
-          home: ProductDetails(),
+
           title: 'Home Work',
           debugShowCheckedModeBanner: false,
         );
