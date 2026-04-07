@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/TabBarView/all_food.dart';
-import 'package:food_app/Widget/food.dart';
+import 'package:food_app/Widget/product_details.dart';
+
 import 'package:food_app/butoomBar%20Page/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/home.dart';
@@ -25,14 +26,14 @@ class MyApp extends StatelessWidget {
           // },
           // initialRoute: '/SplashScreen',
           theme: ThemeData(
-            scaffoldBackgroundColor: Colors.white.withOpacity(0.8),
+            scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarThemeData(
               centerTitle: true,
               backgroundColor: Colors.blue
             )
           ),
 
-          home: SplashScreen(),
+          home: ProductDetails(),
           title: 'Home Work',
           debugShowCheckedModeBanner: false,
         );

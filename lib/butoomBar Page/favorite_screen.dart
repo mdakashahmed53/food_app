@@ -8,6 +8,7 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Favorite Screen'),
+        
       ),
     );
   }

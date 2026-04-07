@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/TabBarView/all_food.dart';
-import 'package:food_app/Widget/food.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,12 +14,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  bool isSelected = false;
+  // final List<String> cetagorys = ['All', 'Combos', 'Sliders', 'Classic', 'Old'];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -108,9 +110,8 @@ class _HomeScreenState extends State<HomeScreen>
 
                       child: IconButton(
                         onPressed: () {},
-                        icon: Image.network(
-                          'https://img.icons8.com/ios/50/horizontal-settings-mixer--v2.png',
-                        ),
+
+                        icon: Icon(Icons.tune, size: 30, color: Colors.white),
                       ),
                     ),
                   ),
@@ -118,97 +119,141 @@ class _HomeScreenState extends State<HomeScreen>
               ),
 
               SizedBox(height: 10.h),
+
               // tab bar
               TabBar(
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color(0xFFEF2A39),
+                overlayColor: WidgetStatePropertyAll(Colors.transparent),
+                isScrollable: true,
+                indicatorColor: Colors.transparent,
+                controller: _tabController,
+                tabAlignment: TabAlignment.start,
+
+                tabs: [
+                  Card(
+                    color: isSelected ? Color(0XFFF3F4F6) : Colors.red,
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 20,
+                        ),
+                        child: Text(
+                          'All',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  // tab 2
+                  Card(
+                    color:Color(0XFFF3F4F6),
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                        child: Text(
+                          'Combos',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
                   ),
 
-                  controller: _tabController,
-                  tabs: [
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(
-                        vertical: 0,
-                        horizontal: 10,
-                      ),
-                      child: Card(
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'All',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                  // tab 3
+                  Card(
+                    color: Color(0XFFF3F4F6),
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                        child: Text(
+                          'Sliders',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
-                    // tab 2
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(
-                        vertical: 0,
-                        horizontal: 10,
-                      ),
-                      child: Card(
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Combos',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
+                  ),
 
-                    // tab 3
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(
-                        vertical: 0,
-                        horizontal: 10,
-                      ),
-                      child: Card(
-                        elevation: 5,
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Sliders',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                  // tab 4
+                  Card(
+                    color: Color(0XFFF3F4F6),
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                        child: Text(
+                          'Classic',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
 
-              SizedBox(height: 8,),
+                  // tab 5
+                  Card(
+                    color: Color(0XFFF3F4F6),
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                        child: Text(
+                          'Old',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+
+
+                ],
+              ),
+
+              SizedBox(height: 8),
 
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [AllFood(), Text('Combo'), Text('pakage')],
+                  children: [AllFood(), 
+                  Text('Combo'), Text('Sliders'),  Text('Classic'),  Text('Old')
+                  ],
                 ),
               ),
             ],

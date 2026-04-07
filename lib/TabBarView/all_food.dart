@@ -74,52 +74,59 @@ class AllFood extends StatelessWidget {
         ),
 
         itemBuilder: (context, index) {
-          return Card(
-            elevation: 5,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Column(
-                children: [
-                  Image.asset(foodAll[index]['foodImage'], height: 70.h, width: 70.w),
-                  Text(
-                    foodAll[index]['foodNameFrist'],
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12.sp,
+          return InkWell(
+            onTap: () {
+              
+            },
+            child: Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Column(
+                  children: [
+                    Image.asset(foodAll[index]['foodImage'], height: 70.h, width: 70.w),
+                    Text(
+                      foodAll[index]['foodNameFrist'],
+                      style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12.sp,
+                        color: Colors.black87
+                      ),
                     ),
-                  ),
-                  Text(
-                    foodAll[index]['foodNameLast'],
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12.sp,
+                    Text(
+                      foodAll[index]['foodNameLast'],
+                      style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12.sp,
+                        color: Colors.grey.shade600
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5.h),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset('asset/image/rating.png', height: 15.h),
-                            SizedBox(width: 4),
-                            Text(
-                              foodAll[index]['foodRating'],
-                              style: GoogleFonts.roboto(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w400,
+                    SizedBox(height: 5.h),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset('asset/image/rating.png', height: 15.h),
+                              SizedBox(width: 4),
+                              Text(
+                                foodAll[index]['foodRating'],
+                                style: GoogleFonts.roboto(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-
-                        Icon(Icons.favorite_border_sharp, size: 20),
-                      ],
+                            ],
+                          ),
+            
+                          Icon(Icons.favorite_border_sharp, size: 20),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
