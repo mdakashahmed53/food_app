@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/TabBarView/all_food.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,15 +12,73 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+
   late TabController _tabController;
-  bool isSelected = false;
-  // final List<String> cetagorys = ['All', 'Combos', 'Sliders', 'Classic', 'Old'];
+
+  int selectedIndex = 0;
+
+  final List<String> categories = [
+    'All',
+    'Combos',
+    'Sliders',
+    'Classic',
+    'Old',
+  ];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+
+    _tabController = TabController(length: categories.length, vsync: this);
+
+    _tabController.addListener(() {
+      setState(() {
+        selectedIndex = _tabController.index;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  Widget buildTab(String text, int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+          _tabController.animateTo(index);
+        });
+      },
+      child: Card(
+        elevation: 0,
+        color: selectedIndex == index
+            ? Colors.red
+            : const Color(0XFFF3F4F6),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 12,
+            ),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: selectedIndex == index
+                    ? Colors.white
+                    : Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -44,31 +101,30 @@ class _HomeScreenState extends State<HomeScreen>
                   fontWeight: FontWeight.w500,
                   color: Colors.black.withOpacity(0.7),
                 ),
-                title: Text('FoodGo'),
-                subtitle: Text('Order your favourite food!'),
+                title: const Text('FoodGo'),
+                subtitle: const Text('Order your favourite food!'),
                 trailing: Container(
+                  width: 50.w,
+                  height: 50.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: NetworkImage(
                         'https://media.licdn.com/dms/image/v2/D4D03AQFvwSL9TeVHVA/profile-displayphoto-scale_200_200/B4DZiiOC4GGgAc-/0/1755068250704?e=2147483647&v=beta&t=CwZzl7bG0j-wFxX0m4C4TpT4enC29-UIIlLFA5zZEuk',
                       ),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  width: 50.w,
-                  height: 200.h,
                 ),
               ),
+
               SizedBox(height: 10.h),
 
-              //search bar
+              /// SEARCH BAR
               Row(
                 children: [
                   Flexible(
                     flex: 3,
-                    fit: FlexFit.tight,
                     child: Card(
                       elevation: 2,
                       child: Container(
@@ -77,9 +133,8 @@ class _HomeScreenState extends State<HomeScreen>
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
                         ),
-
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8),
                           child: TextFormField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -89,29 +144,34 @@ class _HomeScreenState extends State<HomeScreen>
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                               ),
-                              prefixIcon: Icon(Icons.search_rounded, size: 30),
+                              prefixIcon: const Icon(
+                                Icons.search_rounded,
+                                size: 30,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 15),
-                  //filter
+
+                  const SizedBox(width: 15),
+
                   Flexible(
                     flex: 1,
                     child: Container(
+                      height: 57,
                       decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      height: 57,
-                      width: 80,
-
                       child: IconButton(
                         onPressed: () {},
-
-                        icon: Icon(Icons.tune, size: 30, color: Colors.white),
+                        icon: const Icon(
+                          Icons.tune,
+                          size: 30,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -120,139 +180,36 @@ class _HomeScreenState extends State<HomeScreen>
 
               SizedBox(height: 10.h),
 
-              // tab bar
+              /// TAB BAR
               TabBar(
-                overlayColor: WidgetStatePropertyAll(Colors.transparent),
+                controller: _tabController,
                 isScrollable: true,
                 indicatorColor: Colors.transparent,
-                controller: _tabController,
+                overlayColor:
+                const WidgetStatePropertyAll(Colors.transparent),
+                dividerColor: Colors.transparent,
                 tabAlignment: TabAlignment.start,
+                padding: EdgeInsets.zero,
+                labelPadding: const EdgeInsets.only(right: 8),
 
-                tabs: [
-                  Card(
-                    color: isSelected ? Color(0XFFF3F4F6) : Colors.red,
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 20,
-                        ),
-                        child: Text(
-                          'All',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  // tab 2
-                  Card(
-                    color:Color(0XFFF3F4F6),
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 12,
-                        ),
-                        child: Text(
-                          'Combos',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-
-                  // tab 3
-                  Card(
-                    color: Color(0XFFF3F4F6),
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 12,
-                        ),
-                        child: Text(
-                          'Sliders',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-
-                  // tab 4
-                  Card(
-                    color: Color(0XFFF3F4F6),
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 12,
-                        ),
-                        child: Text(
-                          'Classic',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-
-                  // tab 5
-                  Card(
-                    color: Color(0XFFF3F4F6),
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 12,
-                        ),
-                        child: Text(
-                          'Old',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-
-
-                ],
+                tabs: List.generate(
+                  categories.length,
+                      (index) => buildTab(categories[index], index),
+                ),
               ),
 
               SizedBox(height: 8),
 
+              /// TAB VIEW
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [AllFood(), 
-                  Text('Combo'), Text('Sliders'),  Text('Classic'),  Text('Old')
+                  children: const [
+                    AllFood(),
+                    Center(child: Text('Combo')),
+                    Center(child: Text('Sliders')),
+                    Center(child: Text('Classic')),
+                    Center(child: Text('Old')),
                   ],
                 ),
               ),

@@ -10,6 +10,7 @@ class AllFood extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> foodAll = [
       {
+
         'foodNameFrist': 'Cheeseburger',
         'foodNameLast': "Wendy's Burger",
         'foodRating': '4.0',
@@ -50,33 +51,48 @@ class AllFood extends StatelessWidget {
         'foodDescription':'Indulge in our crispy and savory Fried Chicken Burger, made with a juicy chicken patty, hand-breaded and deep-fried to perfection, served on a warm bun with lettuce, tomato, and a creamy sauce.'
       },
       {
-        'foodNameFrist': 'Cheeseburger',
-        'foodNameLast': "Wendy's Burger",
-        'foodRating': '4.0',
-        'foodImage': 'asset/image/img.png',
-      },
+      'foodNameFrist': 'Cheeseburger',
+      'foodNameLast': "Wendy's Burger",
+      'foodRating': '4.0',
+      'foodImage': 'asset/image/img.png',
+      'foodDescription':"The Cheeseburger Wendy's Burger is a classic fast food burger that packs a punch of flavor in every bite. Made with a juicy beef patty cooked to perfection, it's topped with melted American cheese, crispy lettuce, ripe tomato, and crunchy pickles.",
+      'deliveryTime':'20',
+      'foodPrice':'8.24',
 
-      {
-        'foodNameFrist': 'Hamburger',
-        'foodNameLast': "Veggie Burger",
-        'foodRating': '3.9',
-        'foodImage': 'asset/image/vaggie.png',
-      },
+  },
 
-      {
-        'foodNameFrist': 'Hamburger',
-        'foodNameLast': "Chicken Burge",
-        'foodRating': '4.5',
-        'foodImage': 'asset/image/chicken.png',
-      },
+  {
+  'foodNameFrist': 'Hamburger',
+  'foodNameLast': "Veggie Burger",
+  'foodRating': '3.9',
+  'foodImage': 'asset/image/vaggie.png',
+  'foodDescription':"Enjoy our delicious Hamburger Veggie Burger, made with a savory blend of fresh vegetables and herbs, topped with crisp lettuce, juicy tomatoes, and tangy pickles, all served on a soft, toasted bun. ",
+  'deliveryTime':'40',
+  'foodPrice':'10.24',
+  },
 
-      {
-        'foodNameFrist': 'Hamburger',
-        'foodNameLast': "Fried Chicken Burger",
-        'foodRating': '4.9',
-        'foodImage': 'asset/image/ferid.png',
-      },
-    ];
+  {
+  'foodNameFrist': 'Hamburger',
+  'foodNameLast': "Chicken Burge",
+  'foodRating': '4.5',
+  'foodImage': 'asset/image/chicken.png',
+  'deliveryTime':'35',
+  'foodPrice':'15.24',
+  'foodDescription':'Our chicken burger is a delicious and healthier alternative to traditional beef burgers, perfect for those looking for a lighter meal option. Try it today and experience the mouth-watering flavors of our Hamburger Chicken Burger!'
+  },
+
+  {
+  'foodNameFrist': 'Hamburger',
+  'foodNameLast': "Fried Chicken Burger",
+  'foodRating': '4.9',
+  'foodImage': 'asset/image/ferid.png',
+  'deliveryTime':'10',
+  'foodPrice':'26.99',
+  'foodDescription':'Indulge in our crispy and savory Fried Chicken Burger, made with a juicy chicken patty, hand-breaded and deep-fried to perfection, served on a warm bun with lettuce, tomato, and a creamy sauce.'
+  },
+
+
+  ];
 
     return Scaffold(
       body: GridView.builder(

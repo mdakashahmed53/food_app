@@ -165,34 +165,29 @@ class _ProductDetailsState extends State<ProductDetails> {
                        Row(
                          children: [
 
-                           SizedBox(
-                             width: 50,
-                             height: 50,
-                             child: ElevatedButton(onPressed: (){
-                               setState(() {
-                                if(portion !=0){
-                                  setState(() {
-                                    portion--;
-                                  });
-                                }
-                               });
-                             },
-                                 style: ElevatedButton.styleFrom(
-                                     backgroundColor: Colors.red,
-                                     foregroundColor: Colors.white,
-                                     shape: RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.circular(10),
-
-                                     )
+                           ElevatedButton(onPressed: (){
+                             setState(() {
+                               if(portion != 0){
+                                 portion --;
+                               }
+                             });
+                           },
+                               style: ElevatedButton.styleFrom(
+                                 backgroundColor: Colors.red,
+                                 foregroundColor: Colors.white,
+                                 shape: RoundedRectangleBorder(
+                                   borderRadius: BorderRadius.circular(10)
                                  ),
-                                 child: Text('-', style: TextStyle(
-                                   fontSize: 30,
-                                   fontWeight: FontWeight.bold,
-                                 ),)
+                                 alignment: Alignment.center,
+                                 padding: EdgeInsets.zero
+                               ),
+                               child: Text('-',style: TextStyle(
+                             fontWeight: FontWeight.bold,
+                             fontSize: 30
+                           ),)),
 
-                             ),
 
-                           ),
+
                            SizedBox(
                              width: 5,
                            ),

@@ -4,6 +4,7 @@ import 'package:food_app/Widget/product_details.dart';
 
 import 'package:food_app/butoomBar%20Page/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/buttom_screen.dart';
 import 'package:food_app/home.dart';
 import 'package:food_app/splash_screen.dart';
 
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
         return MaterialApp(
-          routes: {
-            '/':(context)=>Home(),
-            '/SplashScreen':(context)=>SplashScreen()
-          },
-          initialRoute: '/SplashScreen',
+          // routes: {
+          //   '/':(context)=>Home(),
+          //   '/SplashScreen':(context)=>SplashScreen()
+          // },
+          // initialRoute: '/SplashScreen',
+          //
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarThemeData(
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
 
 
           title: 'Home Work',
+          home: SplashScreen(),
           debugShowCheckedModeBanner: false,
         );
 
